@@ -17,8 +17,10 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class-"container">
           <a class="navbar-brand p-3" href="/"> <%= image_tag 'kitty cake.jpg', :size =>'200x200' %></a>
+          <a class="navbar-brand p-3" href="/"> <%= image_tag 'maron.jpg', :size =>'200x200' %></a>
+          <a class="navbar-brand p-3" href="/"> <%= image_tag 'cheese.jpg', :size =>'200x200' %></a>
           <%=link_to root_path, class: 'nav-link text-blue' do %>
-          <h1><i class="fas fa-birthday-cake"></i>Ibaraki Cake<i class="fas fa-birthday-cake"></i></h1>
+          <h1><strong><i class="fas fa-birthday-cake"></i>Ibaraki Cake<i class="fas fa-birthday-cake"></i></strong></h1>
           <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -26,25 +28,20 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
       
         <% if user_signed_in? %>
-              <p>ようこそ<%= current_customer.last_name %>さん！</p>
+              <p>ようこそ<%= current_user.last_name %>さん！</p>
             <% end %>
     <ul class="navbar-nav ml-auto">
        <% if user_signed_in? %>
-       <li class="navbar-link"><%= link_to "マイページ", public_customer_path(current_customer), class: "btn btn-outline-dark" %></li>
-       <li class="navbar-link"><%= link_to "商品一覧", public_items_path, class: "btn btn-outline-dark" %></li>
-       <li class="navbar-link"><%= link_to "カート", public_cart_items_path, class: "btn btn-outline-dark" %></li>
-       <li class="navbar-link"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-dark" %></li
+       <li class="navbar-link"><%= link_to "マイページ", public_user_path(current_user), class: "btn btn-outline-dark" %></li>
+       <li class="navbar-link"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-dark" %></li>
        <% elsif admin_signed_in? %>
-       <li class="navbar-link"><%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-dark" %></li>
-       <li class="navbar-link"><%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-dark" %></li>
-       <li class="navbar-link"><%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-dark" %></li>
-       <li class="navbar-link"><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-dark" %></li>
-       <li class="navbar-link"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-dark" %></li>
+              <li class="navbar-link"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-dark" %></li>
       <% else %>
        
        
        <li class="navbar-link"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-dark" %></li>
        <li class="navbar-link"><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-dark" %></li>
+       <li class="navbar-link"><%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-outline-dark" %></li>
       <% end %>
     </ul>
         

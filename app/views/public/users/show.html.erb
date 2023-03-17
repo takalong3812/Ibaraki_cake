@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+        <div class="col-md-5">
+         <h2>マイページ<i class="fas fa-yin-yang"></i></h2>
+        </div> 
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+     <h3>登録情報<i class="fas fa-user-circle"></i></h3><span class="ml-5"><%= link_to "編集する", edit_public_user_path, class: "btn btn-success btn-sm" %></span>
+     <div class="table-responsive-md">
+       <table class="table">
+         <tr>
+           <td class="bg-light">氏名</td>
+           <td><%= current_user.last_name %><%= current_user.first_name %></td>
+         </tr>
+         <tr>
+           <td class="bg-light">カナ</td>
+           <td><%= current_user.last_name_kana %><%= current_user.first_name_kana %></td>
+         </tr>
+         <tr>
+            <td class="bg-light">郵便番号</td>
+            <td><%= current_user.postal_code %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">住所</td>
+            <td><%= current_user.address %></td>
+          </tr>
+          <tr>
+            <td class="bg-light">電話番号</td>
+            <td><%= current_user.telephone_number %></td>
+          </tr>  
+          <tr>
+            <td class="bg-light">メールアドレス</td>
+            <td><%= current_user.email %></td>
+          </tr>
+       </table>   
+     </div>
+     <div class="row">
+         <div class="col-md-3 d-flex flex-column">
+           
+           
+           
+           
+         </div>
+     </div>
+    </div>
+  </div>
+</div>
+            
+            
+     
+     
