@@ -27,6 +27,7 @@ Rails.application.routes.draw do
    resources :orders
    resources :addresses,except: [:new, :show]
    resources :items, only: [:index, :show]
+   resources :cart_items, except: [:show, :new, :edit] 
   end  
   
 end
