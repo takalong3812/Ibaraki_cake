@@ -18,6 +18,7 @@ Rails.application.routes.draw do
    resources :items, except: [:destroy]
    resources :users, except: [:new, :create, :destroy]
    resources :orders
+   resources :order_details, only:[:update]
   end  
   
   namespace :public do
