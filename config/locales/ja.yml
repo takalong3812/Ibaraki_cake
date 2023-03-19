@@ -4,3 +4,15 @@ ja:
       way_of_paying:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
+        
+ja: 
+  enums:
+    order:
+      recieve_status:
+        not_yet: "未着"
+        waiting: "発送待ち"
+        working: "発送中"
+        complete: "到着済み"
+        
+        
+        

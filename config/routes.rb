@@ -24,10 +24,13 @@ Rails.application.routes.draw do
    resources :users,except: [:new, :index]
    get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
    patch 'users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+   get 'orders/thanks', to: 'orders#thanks'
+   post 'orders/confirm' => 'orders#confirm'
    resources :orders
    resources :addresses,except: [:new, :show]
    resources :items, only: [:index, :show]
    resources :cart_items, except: [:show, :new, :edit] 
+   delete 'cart_items' => 'cart_items#destroy_all'
   end  
   
 end

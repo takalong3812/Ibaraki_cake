@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
     
+     has_many :order_details, dependent: :destroy
     belongs_to :user
     
     validates :postal_code, presence: true
@@ -12,6 +13,8 @@ class Order < ApplicationRecord
     end
     
     enum way_of_paying: { credit_card:0, transfer:1 }
+    
+    enum recieve_status:{ not_yet:0, waiting:1, working:2, complete:3}
     
     
 

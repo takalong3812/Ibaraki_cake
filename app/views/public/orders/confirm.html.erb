@@ -1,0 +1,77 @@
+<div class="nav mt-3">
+    <li class="nav-form">入力<li>
+    <li class="arrow text-black">→</li>
+    <li class="nav-form current" style="background-color:#FFFFFF ;"></li>
+    <li class="arrow text-black">→</li>
+    <li class="nav-form">完了</li>
+</div>
+
+<h1 class="text-black">注文情報確認</h1>
+<div class="col-7 d-inline-block">
+<table class="table-borderbox table-blue" style="opacity: 0.8;">
+  <thead class="thead-dark">    
+   <tr>
+    <th>商品名</th>
+    <th>単価</th>
+    <th>数量</th>
+    <th>小計</th>
+   </tr> 
+  </thead>
+  <tbody>
+     <% @cart_items.each do |item| %>
+     <tr class="text-right">
+       <th class= "text-center"><%= item.item.name %></th>
+       <td><%= item.item.with_tax_price.to_s(:delimited) %>円</td>
+       <td><%= item.amount %></td>
+       <td><%= item.subtotal.to_s(:delimited) %>円</td>
+     </tr>
+    <% end %>
+  </tbody>    
+</table>
+</div>
+
+<div class="col-3 d-inline-block">
+<table class="table table-borderless table-dark text-right" style="opacity:0.8;">
+    <tbody>
+       <tr>
+        <th class="table-dark">送料</th>
+        <td><%= @order.shipping_fee %></td>
+       </tr>
+       <tr>
+        <th class="table-dark">商品合計</th>
+        <td>
+        <%= @total_price_except_shipping_fee.to_s(:delimited) %>円    
+        </td>
+       </tr>
+       <tr>
+         <th class="table-dark">請求金額</th>
+         <th><%= @billing_amount.to_s(:delimited) %>円</th>      
+       </tr>    
+    </tbody>
+</table>
+</div>
+
+<table class="table table-borderless table-dark" style="opacity: 0.8;"> 
+  <tr>
+    <th>支払方法</th>
+    <td><%= @order.way_of_paying_i18n %></td>
+  </tr>
+  <tr>
+      <th><お届け先</th>
+      <td>
+        〒<%= @order.postal_code %><br><%= @order.address %>
+      </td>
+      <td><%= @order.name %></td>
+  </tr>
+</table>
+<%= form_with model: @order, url: public_orders_path, local: true do |f| %>
+  <%== f.hidden_field :shipping_fee, value: @order.shipping_fee %>
+  <%== f.hidden_field :billing_amount, value: @billing_amount %>
+  <%== f.hidden_field :way_of_paying, value: @order.way_of_paying %>      
+  <%== f.hidden_field :postal_code, value: @order.postal_code %>       
+  <%== f.hidden_field :address, value: @order.address %>
+  <%== f.hidden_field :name, value: @order.name %>
+  <div class= "text-center">
+  <%= f.submit "注文を確定する", class:"btn btn-success" %>
+  </div>
+<% end %>  
